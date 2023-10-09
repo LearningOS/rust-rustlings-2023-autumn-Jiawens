@@ -2,6 +2,8 @@
 //!
 //! You should modify this file to make both exercises pass.
 
+use std::fmt::format;
+
 fn main() {
     // In tests7, we should set up an environment variable
     // called `TEST_FOO`. Print in the standard output to let
@@ -10,15 +12,12 @@ fn main() {
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap()
         .as_secs(); // What's the use of this timestamp here?
-    let your_command = format!(
-        "TEST_FOO={}",
-        timestamp
-    );
+    let your_command = format!("rustc-env=TEST_FOO={}", timestamp);
     println!("cargo:{}", your_command);
 
     // In tests8, we should enable "pass" feature to make the
     // testcase return early. Fill in the command to tell
     // Cargo about that.
-    let your_command = "feature=pass";
+    let your_command = "rustc-cfg=feature=\"pass\"";
     println!("cargo:{}", your_command);
 }
